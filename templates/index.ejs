@@ -85,9 +85,9 @@
     <div id="images">
       <canvas id="pixels" class="full" width="<%= width %>" height="<%= height %>"></canvas>
       <img src="<%= img %>" id="original" class="full" alt="" />
+      <img id="moasic" alt="" src="/public/moasic.jpg" class="full" />
     <% for (var x=0; x<grid.height*grid.width; x++) { %>
       <a href="/public/originals/<%= x %>.jpg" class="tile">
-        <img src="/public/thumbs/<%= x %>.jpg" alt="" />
         <div class="hover"></div>
       </a>
     <% } %>
@@ -172,7 +172,7 @@
         
         var cur = 0
         
-        var $tiles = $('.tile').children('img')
+        var $moasic = $('#moasic')
         var $pixels = $('#pixels')
         var $original = $('#original')
         
@@ -182,17 +182,17 @@
           cur++
           switch (cur) {
             case 0:
-              $tiles.show()
+              $moasic.show()
               $pixels.hide()
               $original.hide()
               break
             case 1:
-              $tiles.hide()
+              $moasic.hide()
               $pixels.hide()
               $original.show()
               break
             case 2:
-              $tiles.hide()
+              $moasic.hide()
               $pixels.show()
               $original.hide()
               cur = -1
