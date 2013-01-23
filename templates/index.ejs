@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>image</title>
+    <style>
+      
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      
+      #images {
+        height: <%= height = dims.height*grid.height %>px;
+        left: 50%;
+        margin: -<%= (dims.height*grid.height)/2 %>px -<%= (dims.width*grid.height)/2 %>px;
+        position: absolute;
+        top: 50%;
+        width: <%= width = dims.width*grid.width %>px;
+      }
+      
+      #images .tile {
+        float: left;
+        height: <%= dims.height %>px;
+        position: relative;
+        width: <%= dims.width %>px;
+        z-index: 99;
+      }
+      
+      #images .tile img {
+        display: block;
+        height: <%= dims.height %>px;
+        width: <%= dims.width %>px;
+      }
+      
+      #images .tile .hover {
+        border: 1px solid #000;
+        display: none;
+        height: <%= dims.height-2 %>px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: <%= dims.width-2 %>px;
+        z-index: 9999;
+      }
+      
+      #images .tile:hover .hover,
+      #images .tile:focus .hover {
+        display: block;
+      }
+            
+      #images .full {
+        bottom: 0;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+        z-index: 0;
+      }
+      
+      #overlay {
+        background: rgba(255, 255, 255, 0.5);
+        display: none;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 999;
+      }
+      
+      #overlay img {
+        left: 50%;
+        overflow: hidden;
+        position: absolute;
+        top: 50%;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div id="images">
+      <canvas id="pixels" class="full" width="<%= width %>" height="<%= height %>"></canvas>
+      <img src="<%= img %>" id="original" class="full" alt="" />
+    <% for (var x=0; x<grid.height*grid.width; x++) { %>
+      <a href="/public/originals/<%= x %>.jpg" class="tile">
+        <img src="/public/thumbs/<%= x %>.jpg" alt="" />
+        <div class="hover"></div>
+      </a>
+    <% } %>
+    </div>
+    
+    <div id="overlay"></div>
+    
+    <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+    <script>
+      
+      // show pixellated image
+      
+      var img = new Image()
+      img.src = '/public/pixels.jpg'
+      img.onload = function() {
+        var srcCanvas = document.createElement('canvas')
+        srcCanvas.width = img.width
+        srcCanvas.height = img.height
+        
+        var canvas = document.getElementById('pixels')
+        var ctx = canvas.getContext('2d')
+        
+        var scaleX = canvas.width/img.width
+        var scaleY = canvas.height/img.height
+        
+        var srcCtx = srcCanvas.getContext('2d')
+        srcCtx.drawImage(img, 0, 0)
+        var srcData = srcCtx.getImageData(0, 0, img.width, img.height).data
+        var imgData = ctx.createImageData(canvas.width, canvas.height)
+        
+        for (var y=0; y<img.height; y++) {
+          for (var x=0; x<img.width; x++) {
+            var origPixel = ((y*img.width)+x)*4
+            for (var y2=0; y2<scaleY; y2++) {
+              var yStart = ((y*scaleY)+y2)*canvas.width
+              for (var x2=0; x2<scaleX; x2++) {
+                var newPixel = (yStart+(x*scaleX)+x2)*4
+                imgData.data[newPixel] = srcData[origPixel]
+                imgData.data[newPixel+1] = srcData[origPixel+1]
+                imgData.data[newPixel+2] = srcData[origPixel+2]
+                imgData.data[newPixel+3] = srcData[origPixel+3]
+              }
+            }
+          }
+        }
+        
+        ctx.putImageData(imgData, 0, 0) 
+      }
+      
+      
+      // image lightbox
+      
+      $(function() {
+        var $overlay = $('#overlay').click(function(e) {
+          e.preventDefault()
+          e.stopPropagation()
+          $overlay.hide()
+        })
+        
+        $('.tile').click(function(e) {
+          e.preventDefault()
+          e.stopPropagation()
+          var src = $(this).attr('href')
+          
+          $overlay.empty().show()
+          var $img = $('<img/>', { src: src }).load(function() {
+            $img.appendTo($overlay)
+            
+            var css = {}
+            css['margin-left'] = -parseInt($img.width()/2, 10)
+            css['margin-top'] = -parseInt($img.height()/2, 10)
+            $img.css(css)
+          })
+        })
+        
+        $(document).keydown(function(e) {
+          if (e.keyCode === 27) $overlay.hide()
+        })
+        
+        
+        // toggle between images
+        
+        var cur = 0
+        
+        var $tiles = $('.tile').children('img')
+        var $pixels = $('#pixels')
+        var $original = $('#original')
+        
+        $(document).click(function(e) {
+          e.preventDefault()
+          
+          cur++
+          switch (cur) {
+            case 0:
+              $tiles.show()
+              $pixels.hide()
+              $original.hide()
+              break
+            case 1:
+              $tiles.hide()
+              $pixels.hide()
+              $original.show()
+              break
+            case 2:
+              $tiles.hide()
+              $pixels.show()
+              $original.hide()
+              cur = -1
+              break
+          }
+        })
+      })
+      
+    </script>
+  </body>
+</html>
