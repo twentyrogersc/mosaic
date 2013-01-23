@@ -7,6 +7,7 @@ Image moasic generator written in [node.js](http://nodejs.org).
 **grid** number of pixels in the format ```#x#```  
 **img** url or path to main image  
 **save** relative path of directory to save assets to
+**tint** opacity of image on top of original pixel colour 
 
 ## files created
 The following files will be created in ```config.save```:  
