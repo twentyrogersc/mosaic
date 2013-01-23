@@ -1,4 +1,3 @@
-var app = require('teller')
 var helpers = require('./lib/helpers')
 var moasic = require('./lib/moasic')
 var path = require('path')
