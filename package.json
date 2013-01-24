@@ -5,8 +5,7 @@
   "dependencies": {
     "async": "0.1.22",
     "canvas": "0.13.1",
-    "ejs": "0.8.3",
-    "request": "2.12.0",
-    "teller": "0.9.0"
+    "colors": "0.6.0-1",
+    "request": "2.12.0"
   }
 }

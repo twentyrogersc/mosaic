@@ -1,7 +1,6 @@
 var helpers = require('./lib/helpers')
 var moasic = require('./lib/moasic')
 var path = require('path')
-var server = require('./lib/server')
 
 
 // config
@@ -17,4 +16,3 @@ config.cwd = __dirname
 // go
 
 moasic.make(config)
-server.go(config, 3000)

@@ -11,7 +11,6 @@ Image moasic generator written in [node.js](http://nodejs.org).
 
 ## files created
 The following files will be created in ```config.save```:  
-**index.html** the html template used by the server   
 **moasic.jpg** the moasic, in the size ```config.grid*config.dims```    
 **pixels.jpg** the coloured pixel grid, for rederence  
 **thumbs/*.jpg** images in the size specified by ```config.dims```  
