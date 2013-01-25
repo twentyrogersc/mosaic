@@ -1,6 +1,6 @@
 {
-  "name": "image",
-  "description": "",
+  "name": "moasic",
+  "description": "Image moasic generator in node.js.",
   "version": "0.0.1",
   "dependencies": {
     "async": "0.1.22",
