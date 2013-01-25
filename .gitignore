@@ -14,5 +14,8 @@ results
 npm-debug.log
 node_modules
 
+tmp/*
 images/*
-public/*
+moasic.jpg
+
+.DS_Store
