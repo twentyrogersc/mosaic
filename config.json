@@ -1,8 +1,5 @@
 {
   "dims": "100x100",
-  "dir": "images",
   "grid": "100x100",
-  "img": "http://distilleryimage8.s3.amazonaws.com/10a0ce48206111e2ae7122000a9f0a14_7.jpg",
-  "save": "moasic.jpg",
-  "tint": 0.6
+  "img": "http://distilleryimage5.s3.amazonaws.com/64c0ebdca0f211e18cf91231380fd29b_7.jpg"
 }
