@@ -9,8 +9,8 @@ var config = require('./config')
 config.dims = helpers.dims(config.dims)
 config.dir = path.join(__dirname, config.dir || 'images')
 config.grid = helpers.dims(config.grid)
-config.save = path.join(__dirname, config.save || 'public')
-config.cwd = __dirname
+config.tmp = path.join(__dirname, 'tmp')
+config.save = path.join(__dirname, config.save)
 
 
 // go
