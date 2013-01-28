@@ -6,6 +6,8 @@
     "async": "0.1.22",
     "canvas": "0.13.1",
     "colors": "0.6.0-1",
+    "fluent-ffmpeg": "1.3.3",
+    "mkdirp": "0.3.4",
     "request": "2.12.0"
   }
 }

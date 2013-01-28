@@ -1,5 +1,5 @@
 {
-  "dims": "100x100",
-  "grid": "100x100",
-  "img": "http://distilleryimage5.s3.amazonaws.com/64c0ebdca0f211e18cf91231380fd29b_7.jpg"
+  "dims": "10x10",
+  "grid": "50x50",
+  "src": "../wave.mov"
 }
