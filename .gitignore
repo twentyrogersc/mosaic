@@ -17,5 +17,6 @@ node_modules
 tmp/*
 images/*
 moasic.jpg
+moasic.mp4
 
 .DS_Store
