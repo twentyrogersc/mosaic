@@ -21,6 +21,10 @@ config.src = isUrl ? config.src : path.join(__dirname, config.src)
 config.tint = config.tint ? parseFloat(config.tint) : 0.7
 config.tmp = path.join(__dirname, config.tmp || 'tmp')
 
+config.cb = function() {
+  helpers.rmdirp(config.tmp)
+}
+
 
 // use moasic/video module depending on config.src
 
