@@ -21,6 +21,12 @@ config.src = isUrl ? config.src : path.join(__dirname, config.src)
 config.tint = config.tint ? parseFloat(config.tint) : 0.7
 config.tmp = path.join(__dirname, config.tmp || 'tmp')
 
+
+// other required 
+
+config.height = config.dims.height*config.grid.height
+config.width = config.dims.width*config.grid.width
+
 config.cb = function() {
   helpers.rmdirp(config.tmp)
 }
