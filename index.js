@@ -1,6 +1,6 @@
 var config = require('./config')
 var helpers = require('./lib/helpers')
-var moasic = require('./lib/moasic')
+var mosaic = require('./lib/mosaic')
 var path = require('path')
 var video = require('./lib/video')
 
@@ -16,7 +16,7 @@ config.dims = helpers.dims(config.dims)
 config.grid = helpers.dims(config.grid)
 config.dir = path.join(__dirname, config.dir || 'images')
 config.fps = config.fps ? parseInt(config.fps) : 6
-config.save = path.join(__dirname, config.save || 'moasic.'+ext)
+config.save = path.join(__dirname, config.save || 'mosaic.'+ext)
 config.src = isUrl ? config.src : path.join(__dirname, config.src)
 config.tint = config.tint ? parseFloat(config.tint) : 0.7
 config.tmp = path.join(__dirname, config.tmp || 'tmp')
@@ -32,7 +32,7 @@ config.cb = function() {
 }
 
 
-// use moasic/video module depending on config.src
+// use mosaic/video module depending on config.src
 
 if (isVideo) video.make(config)
-else moasic.make(config)
+else mosaic.make(config)

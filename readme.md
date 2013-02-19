@@ -1,5 +1,5 @@
-# moasic
-Image moasic generator in [node.js](http://nodejs.org).
+# mosaic
+Image mosaic generator in [node.js](http://nodejs.org).
 
 ## config
 

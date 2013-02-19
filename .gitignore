@@ -17,7 +17,7 @@ node_modules
 tmp/*
 images/*
 tools/*
-moasic.jpg
-moasic.mp4
+mosaic.jpg
+mosaic.mp4
 
 .DS_Store
